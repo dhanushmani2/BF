@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Person 🤍</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+body{
+  margin:0;
+  font-family:'Roboto',sans-serif;
+  transition:all 1s;
+  overflow-x:hidden;
+  position:relative;
+  background:linear-gradient(135deg,#fff1f2,#ffe4e6);
+  color:#1f2937;
+}
+body.night{
+  background:radial-gradient(circle at top,#2c003e,#0b0011);
+  color:#fff;
+}
+
+/* Toggle button */
+.toggle{
+  position:fixed;
+  top:18px;
+  right:18px;
+  z-index:50;
+  background:#fff;
+  border-radius:30px;
+  padding:10px 16px;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(0,0,0,.3);
+  font-weight:bold;
+}
+
+/* Stars and sparkles */
+.stars{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+.sparkle{
+  position:absolute;
+  width:8px;
+  height:8px;
+  background:radial-gradient(circle,#fff,#fcd1e2);
+  border-radius:50%;
+  animation:sparkle 6s linear infinite;
+  opacity:0.8;
+}
+@keyframes sparkle{
+  0%{transform:translateY(0) scale(0.5);opacity:0.6}
+  50%{transform:translateY(-50vh) scale(1);opacity:1}
+  100%{transform:translateY(-100vh) scale(0.5);opacity:0}
+}
+
+/* Floating hearts */
+.heart{
+  position:fixed;
+  font-size:28px;
+  animation:float 10s linear infinite;
+  opacity:.9;
+  pointer-events:none;
+}
+@keyframes float{
+  from{transform:translateY(0) scale(1)}
+  to{transform:translateY(-120vh) scale(1.5);opacity:0}
+}
+
+/* Sections */
+section{
+  position:relative;
+  z-index:1;
+  max-width:900px;
+  margin:80px auto;
+  background:#ffffff30;
+  backdrop-filter:blur(14px);
+  border-radius:36px;
+  padding:60px;
+  box-shadow:0 25px 60px rgba(0,0,0,.4);
+  transition:all .5s;
+}
+
+/* Hero section */
+.hero{text-align:center}
+.hero h1{
+  font-family:'Pacifico',cursive;
+  font-size:3.8rem;
+  color:#ec4899;
+  animation:pulse 3s infinite;
+}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.hero p{
+  font-size:1.3rem;
+  color:#9d174d;
+  margin-top:10px;
+  line-height:1.6;
+}
+
+/* Typewriter effect */
+.typebox{
+  margin-top:40px;
+  background:#ffffff20;
+  padding:36px;
+  border-radius:28px;
+  line-height:1.9;
+  font-size:1.25rem;
+  color:#1f2937;
+  transition:all .5s;
+}
+.caret{
+  display:inline-block;
+  width:2px;
+  height:1.2em;
+  background:#ec4899;
+  animation:blink 1s infinite;
+}
+@keyframes blink{50%{opacity:0}}
+
+/* Gallery */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:26px;
+  margin-top:40px;
+}
+.gallery img{
+  width:100%;
+  border-radius:28px;
+  box-shadow:0 25px 50px rgba(0,0,0,.5);
+  transition:.5s;
+  cursor:pointer;
+}
+.gallery img:hover{
+  transform:scale(1.1) rotate(1deg);
+  box-shadow:0 35px 70px rgba(0,0,0,.6);
+}
+
+/* Highlight and quote */
+.highlight{color:#ec4899;font-weight:bold}
+.quote{
+  font-style:italic;
+  color:#be185d;
+  text-align:center;
+  margin-top:20px;
+  font-size:1.15rem;
+  line-height:1.5;
+}
+
+/* Footer */
+.footer{
+  text-align:center;
+  padding:40px;
+  color:#9d174d;
+  position:relative;
+  z-index:10;
+}
+
+/* Responsive */
+@media(max-width:600px){
+  section{padding:40px}
+  .hero h1{font-size:3rem}
+}
+</style>
+</head>
+<body class="day">
+
+<div class="toggle" onclick="toggleMode()">🌗 Day / Night</div>
+
+<!-- Sparkles -->
+<div id="sparkles"></div>
+
+<section class="hero">
+  <h1>Hey, You! ✨</h1>
+  <p>Some people bring magic to ordinary moments. You are that magic. 💫</p>
+  <div class="typebox" id="typebox"><span id="text"></span><span class="caret"></span></div>
+  <div class="quote">"Every shared smile, laugh, and moment with you is a treasure. You bring warmth, comfort, and a spark that makes life brighter. 🌸✨"</div>
+</section>
+
+<section>
+  <h2 style="text-align:center;color:#ec4899">🌈 Memories That Spark Joy</h2>
+  <div class="gallery">
+    <img src="C:\Users\HP\Pictures\Best Frd\d.jpg" />
+    <img src="C:\Users\HP\Pictures\Best Frd\k.jpg" />
+    
+  </div>
+</section>
+
+<section style="text-align:center;margin-top:60px">
+  <h2 class="highlight">Since the Day You Became Special</h2>
+  <h3 id="days">0 days</h3>
+  <div class="quote">"Our bond is one-of-a-kind, filled with smiles, joy, and moments I will always cherish. 💖"</div>
+</section>
+
+<footer class="footer">Tap anywhere to release little hearts 💖✨</footer>
+
+<script>
+// Typewriter effect
+const confession = `You make the world feel lighter and brighter just by being present. Each laugh, every shared glance, every tiny moment becomes a memory I treasure. 🌟`;
+let i=0; function typeWriter(){const el=document.getElementById('text'); const t=setInterval(()=>{el.textContent+=confession.charAt(i++);if(i>=confession.length)clearInterval(t)},35);} typeWriter();
+
+// Since special counter
+const specialDate = new Date('2022-06-15');
+function updateCounter(){const now=new Date();const diff=Math.floor((now-specialDate)/(1000*60*60*24));document.getElementById('days').textContent=diff+' days';} updateCounter(); setInterval(updateCounter,60000);
+
+// Day/Night toggle
+function toggleMode(){document.body.classList.toggle('day');document.body.classList.toggle('night');}
+
+// Tap-to-release hearts
+document.addEventListener('click',(e)=>{
+  const h=document.createElement('div');h.className='heart';h.textContent='💖';h.style.left=e.clientX+'px';h.style.top=e.clientY+'px';document.body.appendChild(h);setTimeout(()=>h.remove(),9000);
+});
+
+// Sparkles
+for(let j=0;j<50;j++){
+  const s=document.createElement('div');
+  s.className='sparkle';
+  s.style.left=Math.random()*100+'vw';
+  s.style.top=Math.random()*100+'vh';
+  s.style.animationDelay=Math.random()*5+'s';
+  document.getElementById('sparkles').appendChild(s);
+}
+</script>
+</body>
+</html>
